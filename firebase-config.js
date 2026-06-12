@@ -20,12 +20,12 @@ import {
 from "https://www.gstatic.com/firebasejs/12.0.0/firebase-firestore.js";
 
 const firebaseConfig = {
-  apiKey: "YOUR_KEY",
+  apiKey: "AIzaSyCFK-JCo-TwyD8wtvuxK9XBhOWRcw7K1xw",
   authDomain: "marsmobileservices.firebaseapp.com",
   projectId: "marsmobileservices",
   storageBucket: "marsmobileservices.firebasestorage.app",
   messagingSenderId: "187685450627",
-  appId: "YOUR_APP_ID"
+  appId: "1:187685450627:web:0056af1b087dcc8348bcb6"
 };
 
 const app = initializeApp(firebaseConfig);
