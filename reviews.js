@@ -1,18 +1,13 @@
 import {
- db,
- collection,
- getDocs,
- addDoc,
- deleteDoc,
- doc
-}
-from "./firebase-config.js";
-
-import {
- auth,
- getDoc
-}
-from "./firebase-config.js";
+  auth,
+  db,
+  doc,
+  getDoc,
+  collection,
+  getDocs,
+  addDoc,
+  deleteDoc
+} from "./firebase-config.js";
 
 import {
  onAuthStateChanged
