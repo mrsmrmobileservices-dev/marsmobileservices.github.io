@@ -51,7 +51,7 @@ onAuthStateChanged(auth, async (user) => {
 
 });
 
-});
+};
 
 async function loadUsers(){
 
