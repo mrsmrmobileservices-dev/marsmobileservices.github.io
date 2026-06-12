@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mars Mobile Services Admin</title>
+<link rel="stylesheet" href="styles.css">
+<style>
+.admin-container{
+    max-width:1200px;
+    margin:40px auto;
+    padding:20px;
+}
+
+.admin-card{
+    background:#111827;
+    border:1px solid #1f2937;
+    border-radius:12px;
+    padding:20px;
+    margin-bottom:20px;
+}
+
+.admin-grid{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:20px;
+}
+
+.admin-table{
+    width:100%;
+    border-collapse:collapse;
+}
+
+.admin-table th,
+.admin-table td{
+    padding:10px;
+    border:1px solid #1f2937;
+}
+
+.admin-table button{
+    padding:6px 12px;
+    cursor:pointer;
+}
+</style>
+</head>
+<body>
+
+<div class="admin-container">
+
+<h1>Admin Dashboard</h1>
+
+<div class="admin-card">
+<button id="logoutBtn">Logout</button>
+</div>
+
+<div class="admin-grid">
+
+<div class="admin-card">
+
+<h2>Add User</h2>
+
+<input id="email" type="email" placeholder="Email">
+<br><br>
+
+<input id="phone" type="text" placeholder="Phone Number">
+<br><br>
+
+<input id="name" type="text" placeholder="Full Name">
+<br><br>
+
+<button id="addUserBtn">
+Add User
+</button>
+
+</div>
+
+<div class="admin-card">
+
+<h2>Statistics</h2>
+
+<p>Total Users:
+<span id="userCount">0</span>
+</p>
+
+</div>
+
+</div>
+
+<div class="admin-card">
+
+<h2>Users</h2>
+
+<table class="admin-table">
+
+<thead>
+<tr>
+<th>Name</th>
+<th>Email</th>
+<th>Phone</th>
+<th>Action</th>
+</tr>
+</thead>
+
+<tbody id="usersTable">
+</tbody>
+
+</table>
+
+</div>
+
+</div>
+
+<script type="module" src="admin.js"></script>
+
+</body>
+</html>
