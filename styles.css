@@ -55,21 +55,23 @@ a:hover { text-decoration: underline; }
 }
 
 .login-container{
-  max-width:400px;
-  margin:80px auto;
-  padding:25px;
-  background:#111827;
-  border-radius:12px;
-  border:1px solid #1f2937;
+ max-width:400px;
+ margin:80px auto;
+ padding:25px;
+ background:#111827;
+ border-radius:12px;
+ border:1px solid #1f2937;
 }
 
-.login-container input{
-  width:100%;
-  margin-bottom:15px;
+.admin-table{
+ width:100%;
+ border-collapse:collapse;
 }
 
-.login-container button{
-  width:100%;
+.admin-table th,
+.admin-table td{
+ border:1px solid #1f2937;
+ padding:10px;
 }
 
 .nav a {

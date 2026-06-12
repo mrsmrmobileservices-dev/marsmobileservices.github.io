@@ -1,140 +1,144 @@
 import {
-    auth,
-    db,
-    doc,
-    getDoc
-} from "./firebase-config.js";
+ auth,
+ db,
+ doc,
+ getDoc,
+ collection,
+ getDocs,
+ addDoc,
+ deleteDoc
+}
+from "./firebase-config.js";
 
 import {
-    onAuthStateChanged,
-    signOut
-} from "https://www.gstatic.com/firebasejs/12.0.0/firebase-auth.js";
+ onAuthStateChanged,
+ signOut
+}
+from "https://www.gstatic.com/firebasejs/12.0.0/firebase-auth.js";
 
-import {
-    collection,
-    getDocs,
-    addDoc,
-    deleteDoc
-} from "https://www.gstatic.com/firebasejs/12.0.0/firebase-firestore.js";
-
-const usersTable =
+const table =
 document.getElementById("usersTable");
 
-const userCount =
-document.getElementById("userCount");
+onAuthStateChanged(
+ auth,
+ async (user)=>{
 
-onAuthStateChanged(auth, async (user)=>{
+ if(!user){
 
-    if(!user){
-        window.location.href="login.html";
-        return;
-    }
+   location.href =
+   "login.html";
 
-    const adminRef =
-    doc(db,"admins",user.email);
+   return;
 
-    const adminDoc =
-    await getDoc(adminRef);
+ }
 
-    if(!adminDoc.exists()){
+ const adminRef =
+ doc(
+   db,
+   "admins",
+   user.email
+ );
 
-        alert("Admin access only");
+ const adminDoc =
+ await getDoc(adminRef);
 
-        window.location.href="index.html";
+ if(!adminDoc.exists()){
 
-        return;
-    }
+   alert("Admins only");
 
-    loadUsers();
+   location.href =
+   "index.html";
+
+   return;
+
+ }
+
+ loadUsers();
 
 });
 
 async function loadUsers(){
 
-    usersTable.innerHTML="";
+ table.innerHTML = "";
 
-    const snapshot =
-    await getDocs(collection(db,"users"));
+ const snapshot =
+ await getDocs(
+ collection(db,"users")
+ );
 
-    userCount.textContent =
-    snapshot.size;
+ snapshot.forEach((d)=>{
 
-    snapshot.forEach((docSnap)=>{
+ const user =
+ d.data();
 
-        const data =
-        docSnap.data();
+ const row =
+ document.createElement("tr");
 
-        const row =
-        document.createElement("tr");
+ row.innerHTML = `
+ <td>${user.name || ""}</td>
+ <td>${user.email || ""}</td>
+ <td>${user.phone || ""}</td>
+ <td>
+ <button
+ onclick="deleteUser('${d.id}')">
+ Delete
+ </button>
+ </td>
+ `;
 
-        row.innerHTML = `
-        <td>${data.name || ""}</td>
-        <td>${data.email || ""}</td>
-        <td>${data.phone || ""}</td>
-        <td>
-            <button
-            onclick="deleteUser('${docSnap.id}')">
-            Delete
-            </button>
-        </td>
-        `;
+ table.appendChild(row);
 
-        usersTable.appendChild(row);
-
-    });
+ });
 
 }
 
 document
 .getElementById("addUserBtn")
-.addEventListener("click", async ()=>{
+.addEventListener(
+ "click",
+ async ()=>{
 
-    const name =
-    document.getElementById("name").value;
+ await addDoc(
+ collection(db,"users"),
+ {
+   name:
+   document.getElementById("name").value,
 
-    const email =
-    document.getElementById("email").value;
+   email:
+   document.getElementById("email").value,
 
-    const phone =
-    document.getElementById("phone").value;
+   phone:
+   document.getElementById("phone").value,
 
-    if(!email){
-        alert("Email required");
-        return;
-    }
+   created:
+   new Date()
+ }
+ );
 
-    await addDoc(
-        collection(db,"users"),
-        {
-            name,
-            email,
-            phone,
-            created:new Date()
-        }
-    );
-
-    loadUsers();
+ loadUsers();
 
 });
 
 window.deleteUser =
 async function(id){
 
-    await deleteDoc(
-        doc(db,"users",id)
-    );
+ await deleteDoc(
+ doc(db,"users",id)
+ );
 
-    loadUsers();
+ loadUsers();
 
-}
+};
 
 document
 .getElementById("logoutBtn")
-.addEventListener("click", async ()=>{
+.addEventListener(
+ "click",
+ async ()=>{
 
-    await signOut(auth);
+ await signOut(auth);
 
-    window.location.href =
-    "login.html";
+ location.href =
+ "login.html";
 
 });
