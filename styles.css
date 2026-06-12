@@ -441,6 +441,7 @@ textarea {
 
 .login-status {
   margin-left: auto;
+  padding-left: 20px;
   color: #22c55e;
   font-weight: bold;
 }
