@@ -4,12 +4,6 @@ import { getAuth }
 from "https://www.gstatic.com/firebasejs/12.0.0/firebase-auth.js";
 
 import {
-  getAuth,
-  setPersistence,
-  browserLocalPersistence
-} from "https://www.gstatic.com/firebasejs/12.0.0/firebase-auth.js";
-
-import {
   getFirestore,
   doc,
   getDoc,
@@ -18,7 +12,9 @@ import {
   addDoc,
   deleteDoc,
   query,
-  orderBy
+  orderBy,
+  setPersistence,
+  browserLocalPersistence
 }
 from "https://www.gstatic.com/firebasejs/12.0.0/firebase-firestore.js";
 
