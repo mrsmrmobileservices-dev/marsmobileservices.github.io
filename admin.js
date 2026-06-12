@@ -19,6 +19,20 @@ from "https://www.gstatic.com/firebasejs/12.0.0/firebase-auth.js";
 const table =
 document.getElementById("usersTable");
 
+onAuthStateChanged(auth, async (user) => {
+
+  console.log("USER OBJECT:", user);
+
+  if (!user) {
+    alert("No user is logged in");
+    location.href = "login.html";
+    return;
+  }
+
+  alert("Logged in as: " + user.email);
+
+});
+
 onAuthStateChanged(
  auth,
  async (user)=>{
