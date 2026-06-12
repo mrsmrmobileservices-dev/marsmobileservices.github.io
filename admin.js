@@ -21,53 +21,35 @@ document.getElementById("usersTable");
 
 onAuthStateChanged(auth, async (user) => {
 
-  console.log("USER OBJECT:", user);
+  console.log("USER:", user);
 
   if (!user) {
-    alert("No user is logged in");
+    alert("No user logged in");
     location.href = "login.html";
     return;
   }
 
   alert("Logged in as: " + user.email);
 
+  const adminRef = doc(
+    db,
+    "admins",
+    user.email
+  );
+
+  const adminDoc = await getDoc(adminRef);
+
+  console.log("Admin exists:", adminDoc.exists());
+
+  if (!adminDoc.exists()) {
+    alert("Admins only");
+    location.href = "index.html";
+    return;
+  }
+
+  loadUsers();
+
 });
-
-onAuthStateChanged(
- auth,
- async (user)=>{
-
- if(!user){
-
-   location.href =
-   "login.html";
-
-   return;
-
- }
-
- const adminRef =
- doc(
-   db,
-   "admins",
-   user.email
- );
-
- const adminDoc =
- await getDoc(adminRef);
-
- if(!adminDoc.exists()){
-
-   alert("Admins only");
-
-   location.href =
-   "index.html";
-
-   return;
-
- }
-
- loadUsers();
 
 });
 
