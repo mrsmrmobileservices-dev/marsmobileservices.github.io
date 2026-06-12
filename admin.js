@@ -31,12 +31,11 @@ onAuthStateChanged(auth, async (user) => {
 
   alert("Logged in as: " + user.email);
 
-  const adminRef = doc(
-    db,
-    "admins",
-    user.email
-  );
-
+ const adminRef = doc(
+  db,
+  "admins",
+  user.email.toLowerCase()
+);
   const adminDoc = await getDoc(adminRef);
 
   console.log("Admin exists:", adminDoc.exists());
