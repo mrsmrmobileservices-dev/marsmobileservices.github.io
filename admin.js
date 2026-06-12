@@ -21,28 +21,18 @@ document.getElementById("usersTable");
 
 onAuthStateChanged(auth, async (user) => {
 
-  console.log("USER:", user);
-
   if (!user) {
-  console.log("Waiting for auth...");
-  setTimeout(() => {
-    if (!auth.currentUser) {
-      location.href = "login.html";
-    }
-  }, 1500);
-  return;
-}
+    location.href = "login.html";
+    return;
+  }
 
-  alert("Logged in as: " + user.email);
+  const adminRef = doc(
+    db,
+    "admins",
+    user.email.toLowerCase()
+  );
 
- const adminRef = doc(
-  db,
-  "admins",
-  user.email.toLowerCase()
-);
   const adminDoc = await getDoc(adminRef);
-
-  console.log("Admin exists:", adminDoc.exists());
 
   if (!adminDoc.exists()) {
     alert("Admins only");
@@ -130,13 +120,15 @@ async function(id){
 
 document
 .getElementById("logoutBtn")
-.addEventListener(
- "click",
- async ()=>{
+.addEventListener("click", async () => {
 
- await signOut(auth);
+  try {
+    await signOut(auth);
+  } catch (err) {
+    console.error(err);
+  }
+
+});
 
  location.href =
  "login.html";
-
-});
