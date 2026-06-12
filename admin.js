@@ -24,10 +24,14 @@ onAuthStateChanged(auth, async (user) => {
   console.log("USER:", user);
 
   if (!user) {
-    alert("No user logged in");
-    location.href = "login.html";
-    return;
-  }
+  console.log("Waiting for auth...");
+  setTimeout(() => {
+    if (!auth.currentUser) {
+      location.href = "login.html";
+    }
+  }, 1500);
+  return;
+}
 
   alert("Logged in as: " + user.email);
 

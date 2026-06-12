@@ -4,6 +4,12 @@ import { getAuth }
 from "https://www.gstatic.com/firebasejs/12.0.0/firebase-auth.js";
 
 import {
+  getAuth,
+  setPersistence,
+  browserLocalPersistence
+} from "https://www.gstatic.com/firebasejs/12.0.0/firebase-auth.js";
+
+import {
   getFirestore,
   doc,
   getDoc,
@@ -28,6 +34,7 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 
 export const auth = getAuth(app);
+setPersistence(auth, browserLocalPersistence);
 export const db = getFirestore(app);
 
 export {
