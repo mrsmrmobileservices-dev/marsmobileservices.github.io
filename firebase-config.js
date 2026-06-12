@@ -10,7 +10,9 @@ import {
   collection,
   getDocs,
   addDoc,
-  deleteDoc
+  deleteDoc,
+  query,
+  orderBy
 }
 from "https://www.gstatic.com/firebasejs/12.0.0/firebase-firestore.js";
 
@@ -34,5 +36,7 @@ export {
   collection,
   getDocs,
   addDoc,
-  deleteDoc
+  deleteDoc,
+  query,
+  orderBy
 };

@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<link rel="icon" href="icon.png" type="image/png">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Customer Reviews</title>
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<div class="container">
+
+<h1>Customer Reviews</h1>
+
+<nav class="nav">
+  <a href="index.html">Home</a>
+  <a href="gallery.html">Gallery</a>
+  <a href="booking.html">Booking</a>
+  <a href="reviews.html" class="active">Reviews</a>
+  <a href="login.html">Admin Login</a>
+</nav>
+
+<div class="card">
+
+<h2>Leave A Review</h2>
+
+<input id="reviewName" placeholder="Your Name">
+
+<select id="reviewRating">
+<option value="5">★★★★★</option>
+<option value="4">★★★★☆</option>
+<option value="3">★★★☆☆</option>
+<option value="2">★★☆☆☆</option>
+<option value="1">★☆☆☆☆</option>
+</select>
+
+<textarea id="reviewText" rows="5"
+placeholder="Tell us about your experience"></textarea>
+
+<button id="submitReview">
+Submit Review
+</button>
+
+</div>
+
+<br>
+
+<div id="reviewsContainer"></div>
+
+</div>
+
+<script type="module" src="reviews.js"></script>
+
+</body>
+</html>
