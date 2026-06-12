@@ -1,6 +1,10 @@
 import { initializeApp } from "https://www.gstatic.com/firebasejs/12.0.0/firebase-app.js";
 
-import { getAuth }
+import {
+  getAuth,
+  setPersistence,
+  browserLocalPersistence
+}
 from "https://www.gstatic.com/firebasejs/12.0.0/firebase-auth.js";
 
 import {
@@ -12,9 +16,7 @@ import {
   addDoc,
   deleteDoc,
   query,
-  orderBy,
-  setPersistence,
-  browserLocalPersistence
+  orderBy
 }
 from "https://www.gstatic.com/firebasejs/12.0.0/firebase-firestore.js";
 
